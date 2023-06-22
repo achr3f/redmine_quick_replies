@@ -13,7 +13,7 @@
         <tr class="<%= cycle('odd', 'even') %>">
           <td style="text-align:left;">
             <strong><%= reply.name %></strong><br>
-            <div class="reply__excerpt"><%= reply.body %></div>
+            <div class="reply__excerpt"><%= reply.body.html_safe %></div>
           </td>
 
           <td><%= checked_image reply.is_public? %></td>

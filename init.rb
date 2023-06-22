@@ -17,3 +17,4 @@ Redmine::Plugin.register :redmine_quick_replies do
 end
 
 require File.dirname(__FILE__) + '/lib/redmine_quick_replies'
+require_relative 'lib/redmine_quick_replies/hooks/view_hooks'

@@ -1,0 +1,31 @@
+<% display = Setting.find_by(name: "text_formatting").value == "CKEditor" ? "block" : "none" %>
+<div style="display: <%= display %>;" id="quick_replies_options">
+  <div style="display: inline-block; width: 25%;">
+    Réponse rapide
+  </div>
+  <div style="display: inline-block; width: 50%;">
+    <select id="mySelect">
+      <% Reply.visible.sorted.each do |reply| %>
+        <option value="<%= reply.body %>"><%= reply.name %></option>
+      <% end %>
+    </select>
+  </div>
+  <hr>
+</div>
+
+
+
+<script>
+    var select = document.getElementById("mySelect");
+    var div = document.getElementById("cke_2_contents");
+    select.addEventListener("change", function() {
+      var iframe = div.getElementsByTagName("iframe")[0];
+      var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+
+      var pElement = iframeDocument.querySelector("body");
+      var selectedOption = select.options[select.selectedIndex].value;
+
+      pElement.innerHTML = selectedOption;
+    });
+  </script>
+
